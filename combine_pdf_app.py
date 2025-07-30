@@ -3,6 +3,7 @@ from pypdf import PdfWriter, PdfReader
 from streamlit_sortables import sort_items
 import tempfile
 import os
+import uuid
 
 st.set_page_config(page_title="PDF Merger with Reorder", page_icon="📎")
 st.title("📎 Combine PDF Files with Drag-and-Drop Reorder")
@@ -28,7 +29,7 @@ if uploaded_files:
     for i, name in enumerate(reordered_filenames, 1):
         st.write(f"{i}. {name}")
 
-    if st.button("Gabungkan PDF"):
+    if st.button("🚀 Gabungkan PDF"):
         with st.spinner("🔄 Menggabungkan file..."):
             writer = PdfWriter()
             temp_files = []
@@ -48,12 +49,14 @@ if uploaded_files:
                 with open(output_path, "wb") as f_out:
                     writer.write(f_out)
 
+                random_name = f"Randi_{uuid.uuid4().hex}.pdf"
+
                 with open(output_path, "rb") as f:
                     st.success("✅ Penggabungan selesai!")
                     st.download_button(
-                        label="📥 Download PDF Gabungan",
+                        label="📥 Download PDF",
                         data=f.read(),
-                        file_name="Hasil_Gabungan.pdf",
+                        file_name=random_name,
                         mime="application/pdf"
                     )
 
