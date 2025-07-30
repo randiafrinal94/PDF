@@ -4,7 +4,7 @@ from streamlit_sortables import sort_items
 import tempfile
 import os
 
-st.set_page_config(page_title="📎 PDF Merger with Reorder", page_icon="📎")
+st.set_page_config(page_title="PDF Merger with Reorder", page_icon="📎")
 st.title("📎 Combine PDF Files with Drag-and-Drop Reorder")
 
 uploaded_files = st.file_uploader("Upload file PDF", type="pdf", accept_multiple_files=True)
